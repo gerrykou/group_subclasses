@@ -1,7 +1,7 @@
-#version 002 
+#version 003 
 #resolved issue data https://github.com/gerrykoun/group_subclasses/issues/1
 import csv
-filetoreadfrom='csv_test - short.csv'
+filetoreadfrom='csv_test - Sheet1.csv'
 filetowrite='test.csv'
 with open(filetoreadfrom) as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
@@ -34,8 +34,10 @@ with open(filetoreadfrom) as csv_file:
         if i == 0:
             ddict[listrow0[i]]=listrow1[i]
         elif i>0 :
-            if listrow0[i] in ddict.keys():
-                ddict[listrow0[i]]=ddict[listrow0[i]] +','+ listrow1[i] # issue2: saves just 3 entries, but wrong
+            if listrow0[i] in ddict.keys():     #check if there is a key already in the dict
+                ddict[listrow0[i]]=ddict[listrow0[i]] +'.'+ listrow1[i]
+                #added a ',' delimeter not to mess with the',' delimeter that the csv works with
+                #then you can replace . with , in excel
                 #print(ddict)
             else:
                 ddict[listrow0[i]]=listrow1[i]

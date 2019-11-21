@@ -1,0 +1,35 @@
+import csv
+filetoreadfrom='csv_test - short.csv'
+filetowrite='test.csv'
+with open(filetoreadfrom) as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    line_count = 0
+    listrow0=[]
+    listrow1=[]
+    for row in csv_reader:
+        if line_count==1:
+            listrow0.append(row[0])
+            listrow1.append(row[1])
+        elif line_count>1:
+            listrow0.append(row[0])
+            listrow1.append(row[1])
+            #print(line_count)
+            print(listrow0[line_count-1])
+            #print(listrow1[line_count-1])
+        line_count += 1
+    print(f'Processed {line_count} lines.')
+    print(listrow0)
+    print(listrow1)
+    ddict ={}
+    for i in range(len(listrow0)):
+        if i == 0:
+            ddict={listrow0[i]:listrow1[i]}
+        elif i>0 :
+            ddict[listrow0[i]]=listrow1[i]
+            if listrow0[i] == listrow0[i-1]:
+                print('ok')
+                ddict[listrow0[i]]=ddict[listrow0[i]] +','+ listrow1[i-1]
+    print(ddict)
+with open(filetowrite, 'w') as f:
+    for key in ddict.keys():
+        f.write("%s,%s\n"%(key,ddict[key]))

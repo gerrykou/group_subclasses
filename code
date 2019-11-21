@@ -28,7 +28,7 @@ with open(filetoreadfrom) as csv_file:
             ddict[listrow0[i]]=listrow1[i]
             if listrow0[i] == listrow0[i-1]:
                 print('ok')
-                ddict[listrow0[i]]=ddict[listrow0[i]] +','+ listrow1[i-1]
+                ddict[listrow0[i]]=ddict[listrow0[i]] +','+ listrow1[i-1] # issue: saves just 2 entries, need to be done with .append if it works
     print(ddict)
 with open(filetowrite, 'w') as f:
     for key in ddict.keys():
